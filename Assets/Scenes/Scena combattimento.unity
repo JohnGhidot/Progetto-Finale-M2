@@ -365,11 +365,11 @@ MonoBehaviour:
     name: Balrog
     hp: 147
     baseStats:
-      atk: 30
+      atk: 34
       def: 42
-      res: 29
+      res: 35
       spd: 48
-      crt: 56
+      crt: 58
       aim: 44
       eva: 23
     resistance: 0
@@ -379,7 +379,7 @@ MonoBehaviour:
       dmgType: 0
       elem: 1
       bonusStats:
-        atk: 36
+        atk: 41
         def: 24
         res: 34
         spd: 31
@@ -391,12 +391,12 @@ MonoBehaviour:
     hp: 228
     baseStats:
       atk: 32
-      def: 23
-      res: 26
+      def: 28
+      res: 32
       spd: 57
       crt: 41
       aim: 56
-      eva: 38
+      eva: 44
     resistance: 3
     weakness: 2
     weapon:
