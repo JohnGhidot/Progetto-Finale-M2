@@ -21,7 +21,7 @@ public class Hero
         SetWeapon(weapon);
     }
 
-    public string GetNamne() => name;
+    public string GetName() => name;
     public int GetHp() => hp;
     public Stats GetBaseStats() => baseStats;
     public ELEMENT GetResistance() => resistance;
@@ -31,7 +31,7 @@ public class Hero
 
     public void SetName(string name) => this.name = name;
     public void SetHp (int hp) => this.hp = hp;
-    public void SetBaseStats(Stats stats) => this.baseStats = stats;
+    public void SetBaseStats(Stats baseStats) => this.baseStats = baseStats;
     public void SetResistance(ELEMENT resistance) => this.resistance = resistance;
     public void SetWeakness(ELEMENT weakness) => this.weakness = weakness;
     public void SetWeapon (Weapon weapon) => this.weapon = weapon;

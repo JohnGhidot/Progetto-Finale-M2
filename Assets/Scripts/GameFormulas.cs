@@ -43,12 +43,9 @@ public static class GameFormulas
         if (numero > hitChance)
         {
             Debug.Log("MISS");
-            return false;
+            return true;
         }
-        else
-        {
-            return false;
-        }
+        return false;         
     }
 
     public static bool IsCrit(int critValue)
@@ -59,28 +56,36 @@ public static class GameFormulas
             Debug.Log("CRIT");
             return true;
         }
-        else
-        {
-            return false;
-        }
+        return false;
+        
     }
 
     public static int CalculateDamage(Hero attacker, Hero defender)
     {
+        int baseDamage = 0;
+        int difesa = 0;
+
         Stats attackerStats = Stats.Sum(attacker.GetBaseStats(), attacker.GetWeapon().GetBonusStats());
         Stats defenderStats = Stats.Sum(defender.GetBaseStats(), defender.GetWeapon().GetBonusStats());
-        int difesa = 0;
-        if (attacker.GetWeapon().GetDmgType() == (Weapon.DAMAGE_TYPE.PHYSICAL))
+
+
+        if (Weapon.DAMAGE_TYPE.PHYSICAL.Equals(attacker.GetWeapon().GetDmgType()))
         {
-            difesa = defender.GetBaseStats().def;
+            difesa = defenderStats.def;
         }
-        else if (attacker.GetWeapon().GetDmgType() == (Weapon.DAMAGE_TYPE.MAGICAL))
+        else if (attacker.GetWeapon().GetDmgType().Equals(Weapon.DAMAGE_TYPE.MAGICAL))
         {
-            difesa = defender.GetBaseStats().res;
+            difesa = defenderStats.res;
+        }
+        
+        baseDamage = attackerStats.atk - difesa;
+        baseDamage *= (int) Mathf.Round(EvaluateElementalModifier(attacker.GetWeapon().GetElem(), defender));
+        
+        if (IsCrit(attackerStats.crt))
+        {
+            baseDamage *= 2;
         }
 
-    }
-
-
-
+        return baseDamage >= 0 ? baseDamage : 0;
+    }    
 }
